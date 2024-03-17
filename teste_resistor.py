@@ -1,169 +1,163 @@
 import random
 
-primeira_faixa = 0
-segunda_faixa = 0
-terceira_faixa = 0
-quarta_faixa = 0
+faixa = [1, 2, 3, 4]
+
 resposta = 0
+#y = numero 
 y = 10
+# multiplicador
 z = 0
 
 resposta_min = 0
 resposta_max = 0
 
-primeira_cor = ""
-segunda_cor = ""
-terceira_cor = ""
-quarta_cor = ""
+cor = ["amarelo", "verde", "azul", "marrom"]
+
 
 
 def faixa_01():
-    global primeira_faixa
-    primeira_faixa = random.randint(0, 9)
+    global faixa
+    faixa[0] = random.randint(0, 9)
 
     faixa_02()
 
 def faixa_02():
-    global segunda_faixa
-    segunda_faixa = random.randint(0, 9)
+    global faixa
+    faixa[1] = random.randint(0, 9)
 
     multiplicador()
 
 def multiplicador():
-    global terceira_faixa
-    terceira_faixa = random.randint(0, 7)
-    if (terceira_faixa == 8 or terceira_faixa == 9 ):
+    global faixa
+    faixa[2] = random.randint(0, 7)
+    if (faixa[2] == 8 or faixa[2] == 9 ):
         multiplicador()
     else:
 
         tolerancia()
 
 def tolerancia():
-    global quarta_faixa
-    quarta_faixa = random.randint(1, 11)
+    global faixa
+    faixa[3] = random.randint(1, 11)
 
-    if (quarta_faixa == 3 or quarta_faixa == 4):
+    if (faixa[3] == 3 or faixa[3] == 4):
         tolerancia()
     else:
-        if (quarta_faixa == 9):
+        if (faixa[3]== 9):
             tolerancia()
         else:
             conversao()
 
 def conversao():
-    global primeira_faixa
-    global segunda_faixa
-    global terceira_faixa
-    global quarta_faixa
-    global primeira_cor
-    global segunda_cor
-    global terceira_cor
-    global quarta_cor
+    global faixa
+    global cor
     global y
     global z
 
-    if primeira_faixa == 0:
-        primeira_cor = "preto"
-    elif primeira_faixa == 1:
-        primeira_cor = "marrom"
-    elif primeira_faixa == 2:
-        primeira_cor = "vermelho"
-    elif primeira_faixa == 3:
-        primeira_cor = "laranja"
-    elif primeira_faixa == 4:
-        primeira_cor = "amarela"
-    elif primeira_faixa == 5:
-        primeira_cor = "verde"
-    elif primeira_faixa == 6:
-        primeira_cor = "azul"
-    elif primeira_faixa == 7:
-        primeira_cor = "violeta"
-    elif primeira_faixa == 8:
-        primeira_cor = "cinza"
+    if faixa[0] == 0:
+        cor[0] = "preto"
+    elif faixa[0] == 1:
+        cor[0] = "marrom"
+    elif faixa[0] == 2:
+        cor[0] = "vermelho"
+    elif faixa[0] == 3:
+        cor[0] = "laranja"
+    elif faixa[0] == 4:
+        cor[0] = "amarela"
+    elif faixa[0] == 5:
+        cor[0] = "verde"
+    elif faixa[0] == 6:
+        cor[0] = "azul"
+    elif faixa[0] == 7:
+        cor[0] = "violeta"
+    elif faixa[0] == 8:
+        cor[0] = "cinza"
     else:
-        primeira_cor = "branco"
+        cor[0] = "branco"
 
 
-    if segunda_faixa == 0:
-        segunda_cor = "preto"
-    elif segunda_faixa == 1:
-        segunda_cor = "marrom"
-    elif segunda_faixa == 2:
-        segunda_cor = "vermelho"
-    elif segunda_faixa == 3:
-        segunda_cor = "laranja"
-    elif segunda_faixa == 4:
-        segunda_cor = "amarela"
-    elif segunda_faixa == 5:
-        segunda_cor = "verde"
-    elif segunda_faixa == 6:
-        segunda_cor = "azul"
-    elif segunda_faixa == 7:
-        segunda_cor = "violeta"
-    elif segunda_faixa == 8:
-        segunda_cor = "cinza"
+    if faixa[1] == 0:
+        cor[1] = "preto"
+    elif faixa[1] == 1:
+        cor[1] = "marrom"
+    elif faixa[1] == 2:
+        cor[1] = "vermelho"
+    elif faixa[1] == 3:
+        cor[1] = "laranja"
+    elif faixa[1] == 4:
+        cor[1] = "amarela"
+    elif faixa[1] == 5:
+        cor[1] = "verde"
+    elif faixa[1] == 6:
+        cor[1] = "azul"
+    elif faixa[1] == 7:
+        cor[1] = "violeta"
+    elif faixa[1] == 8:
+        cor[1] = "cinza"
     else:
-        segunda_cor = "branco"
+        cor[1] = "branco"
 
 
-    if terceira_faixa == 0:
-        terceira_cor = "preto"
-    elif terceira_faixa == 1:
-        terceira_cor = "marrom"
-    elif terceira_faixa == 2:
-        terceira_cor = "vermelho"
-    elif terceira_faixa == 3:
-        terceira_cor = "laranja"
-    elif terceira_faixa == 4:
-        terceira_cor = "amarela"
-    elif terceira_faixa == 5:
-        terceira_cor = "verde"
-    elif terceira_faixa == 6:
-        terceira_cor = "azul"
-    elif terceira_faixa == 7:
-        terceira_cor = "violeta"
-    elif terceira_faixa == 10:
-        terceira_cor = "dourado"
+    if faixa[2] == 0:
+        cor[2] = "preto"
+    elif faixa[2] == 1:
+        cor[2] = "marrom"
+    elif faixa[2] == 2:
+        cor[2] = "vermelho"
+    elif faixa[2] == 3:
+        cor[2] = "laranja"
+    elif faixa[2] == 4:
+        cor[2] = "amarela"
+    elif faixa[2] == 5:
+        cor[2] = "verde"
+    elif faixa[2] == 6:
+        cor[2] = "azul"
+    elif faixa[2] == 7:
+        cor[2] = "violeta"
+    elif faixa[2] == 10:
+        cor[2] = "dourado"
 
     else:
-        primeira_cor = "prateado"
+        cor[0] = "prateado"
 
 
 
-    if quarta_faixa == 1:
-        quarta_cor = "marrom"
+    if faixa[3]== 1:
+        cor[3] = "marrom"
         z = 1
-    elif quarta_faixa == 2:
-        quarta_cor = "vermelho"
+    elif faixa[3]== 2:
+        cor[3] = "vermelho"
         z = 2
-    elif quarta_faixa == 5:
-        quarta_cor = "verde"
+    elif faixa[3]== 5:
+        cor[3] = "verde"
         z = 0.5
-    elif quarta_faixa == 6:
-        quarta_cor = "azul"
+    elif faixa[3]== 6:
+        cor[3] = "azul"
         z = 0.25
-    elif quarta_faixa == 7:
-        quarta_cor = "violeta"
+    elif faixa[3]== 7:
+        cor[3] = "violeta"
         z = 0.1
-    elif quarta_faixa == 8:
-        quarta_cor = "cinza"
+    elif faixa[3]== 8:
+        cor[3] = "cinza"
         z = 0.05
-    elif quarta_faixa == 10:
-        quarta_cor = "dourado"
+    elif faixa[3]== 10:
+        cor[3] = "dourado"
         z = 5
     else:
-        quarta_cor = "prateado"
+        cor[3] = "prateado"
         z = 10
 
     responda()
 
 
 def responda():
+    global cor
+    global faixa
     global resposta
     global resposta_min
     global resposta_max
     print("Quanta vale a resistência em ohms das seguintes faixas: ")
-    resposta = int(input('cores na ordem: {}, {}, {} e {}  '.format(primeira_cor, segunda_cor, terceira_cor, quarta_cor)))
+    resposta = int(input('cores na ordem: {}, {}, {} e {}  '.format(cor[0], cor[1], cor[2], cor[3])))
 
     resposta_min = int(input("Qual o minimo que o resistor deve medir? "))
     resposta_max = int(input("Qual o máximo que o resistor deve medir? "))
@@ -174,21 +168,20 @@ def responda():
 def verificar():
     global y
     global resposta
-    global primeira_faixa
-    global segunda_faixa
-    global terceira_faixa
+    global faixa
+    global cor
     global z
     global resposta_min
     global resposta_max
 
 
 
-    x = str(primeira_faixa) + str(segunda_faixa)
+    x = str(faixa[0]) + str(faixa[1])
 
-    if (terceira_faixa < 8):
-        y = (y ** terceira_faixa)
+    if (faixa[2] < 8):
+        y = (y ** faixa[2])
     else:
-        if (terceira_faixa == 10):
+        if (faixa[2] == 10):
             y = 0.1
         else:
             y = 0.01
@@ -222,4 +215,3 @@ def menu():
 
 
 faixa_01()
-
