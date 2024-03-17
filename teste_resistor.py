@@ -3,10 +3,9 @@ import random
 faixa = [1, 2, 3, 4]
 
 resposta = 0
-#y = numero 
-y = 10
-# multiplicador
-z = 0
+valor_multiplicador = 10
+
+percentual = 0
 
 resposta_min = 0
 resposta_max = 0
@@ -51,8 +50,8 @@ def tolerancia():
 def conversao():
     global faixa
     global cor
-    global y
-    global z
+    global valor_multiplicador
+    global percentual
 
     if faixa[0] == 0:
         cor[0] = "preto"
@@ -124,28 +123,28 @@ def conversao():
 
     if faixa[3]== 1:
         cor[3] = "marrom"
-        z = 1
+        percentual = 1
     elif faixa[3]== 2:
         cor[3] = "vermelho"
-        z = 2
+        percentual = 2
     elif faixa[3]== 5:
         cor[3] = "verde"
-        z = 0.5
+        percentual = 0.5
     elif faixa[3]== 6:
         cor[3] = "azul"
-        z = 0.25
+        percentual = 0.25
     elif faixa[3]== 7:
         cor[3] = "violeta"
-        z = 0.1
+        percentual = 0.1
     elif faixa[3]== 8:
         cor[3] = "cinza"
-        z = 0.05
+        percentual = 0.05
     elif faixa[3]== 10:
         cor[3] = "dourado"
-        z = 5
+        percentual = 5
     else:
         cor[3] = "prateado"
-        z = 10
+        percentual = 10
 
     responda()
 
@@ -166,29 +165,29 @@ def responda():
 
 
 def verificar():
-    global y
+    global valor_multiplicador
     global resposta
     global faixa
     global cor
-    global z
+    global percentual
     global resposta_min
     global resposta_max
 
 
 
-    x = str(faixa[0]) + str(faixa[1])
+    numero = str(faixa[0]) + str(faixa[1])
 
     if (faixa[2] < 8):
-        y = (y ** faixa[2])
+        valor_multiplicador = (valor_multiplicador ** faixa[2])
     else:
         if (faixa[2] == 10):
-            y = 0.1
+            valor_multiplicador = 0.1
         else:
-            y = 0.01
-    gabarito = int(x) * y
+            valor_multiplicador = 0.01
+    gabarito = int(numero) * valor_multiplicador
 
-    minimo_gab = gabarito - ((z/100) * gabarito)
-    max_gab = gabarito + ((z / 100) * gabarito)
+    minimo_gab = gabarito - ((percentual/100) * gabarito)
+    max_gab = gabarito + ((percentual / 100) * gabarito)
 
     if (resposta == gabarito):
         print("você acertou o valor nominal")
