@@ -1,4 +1,16 @@
 import random
+import sqlite3
+
+
+
+#conexão:
+
+banco = sqlite3.connect('banco_de_dados/resistor.db')
+cursor = banco.cursor()
+
+
+
+#Código: 
 
 faixa = [1, 2, 3, 4]
 
@@ -155,7 +167,8 @@ def responda():
     global resposta
     global resposta_min
     global resposta_max
-    print("Quanta vale a resistência em ohms das seguintes faixas: ")
+    print(' ')
+    print("Quanto vale a resistência em ohms das seguintes faixas: ")
     resposta = int(input('cores na ordem: {}, {}, {} e {}  '.format(cor[0], cor[1], cor[2], cor[3])))
 
     resposta_min = int(input("Qual o minimo que o resistor deve medir? "))
@@ -189,22 +202,93 @@ def verificar():
     minimo_gab = gabarito - ((percentual/100) * gabarito)
     max_gab = gabarito + ((percentual / 100) * gabarito)
 
+    cursor.execute('UPDATE registro SET TENTATIVAS = TENTATIVAS + 1')
+    banco.commit()
+
     if (resposta == gabarito):
         print("você acertou o valor nominal")
+
+        cursor.execute('UPDATE registro SET ACERTOS_NOMINAIS = ACERTOS_NOMINAIS + 1')
+        banco.commit()
+
+
         if (minimo_gab == resposta_min and max_gab == resposta_max):
             print("você acertou tudo!")
+
+            cursor.execute('UPDATE registro SET ACERTOS = ACERTOS + 1')
+            banco.commit()
+            
         else:
             print("Porém, precisa revisar seus estudos com a tolerância")
+            cursor.execute('UPDATE registro SET ERROS_DE_TOLERÂNCIA = ERROS_DE_TOLERÂNCIA + 1')
+            banco.commit()
 
 
 
     else:
         print("errou")
+        cursor.execute('UPDATE registro SET ERROS = ERROS + 1')
+        banco.commit()
 
+    
+    mostrar_banco()
+    
+
+
+    
+
+def mostrar_banco():
+    print(' ')
+    cursor.execute('SELECT TENTATIVAS FROM registro')
+
+    simplificando = str(cursor.fetchone())
+    simplificando = simplificando.replace('(', ' ')
+    simplificando = simplificando.replace(')', ' ')
+    simplificando = simplificando.replace(',', ' ')
+
+    print('Número de tentativas: {}'.format(simplificando))
+
+    cursor.execute('SELECT ACERTOS_NOMINAIS FROM registro')
+
+    simplificando = str(cursor.fetchone())
+    simplificando = simplificando.replace('(', ' ')
+    simplificando = simplificando.replace(')', ' ')
+    simplificando = simplificando.replace(',', ' ')
+
+    print('Número de acertos nominais: {}'.format(simplificando))
+
+    cursor.execute('SELECT ACERTOS FROM registro')
+
+    simplificando = str(cursor.fetchone())
+    simplificando = simplificando.replace('(', ' ')
+    simplificando = simplificando.replace(')', ' ')
+    simplificando = simplificando.replace(',', ' ')
+
+    print('Número de acertos: {}'.format(simplificando))
+
+    cursor.execute('SELECT ERROS FROM registro')
+
+    simplificando = str(cursor.fetchone())
+    simplificando = simplificando.replace('(', ' ')
+    simplificando = simplificando.replace(')', ' ')
+    simplificando = simplificando.replace(',', ' ')
+
+    print('Número de erros: {}'.format(simplificando))
+
+    
+    cursor.execute('SELECT ERROS_DE_TOLERÂNCIA FROM registro')
+
+    simplificando = str(cursor.fetchone())
+    simplificando = simplificando.replace('(', ' ')
+    simplificando = simplificando.replace(')', ' ')
+    simplificando = simplificando.replace(',', ' ')
+
+    print('Número de erros nominais: {}'.format(simplificando))
     menu()
 
-
 def menu():
+
+    
     decisao = int(input("Digite 1 para iniciar novamente e 0 para fechar o app: "))
     if (decisao > 0):
         faixa_01()
