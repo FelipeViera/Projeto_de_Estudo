@@ -171,8 +171,8 @@ def responda():
     print("Quanto vale a resistência em ohms das seguintes faixas: ")
     resposta = int(input('cores na ordem: {}, {}, {} e {}  '.format(cor[0], cor[1], cor[2], cor[3])))
 
-    resposta_min = int(input("Qual o minimo que o resistor deve medir? "))
-    resposta_max = int(input("Qual o máximo que o resistor deve medir? "))
+    resposta_min = float(input("Qual o minimo que o resistor deve medir? "))
+    resposta_max = float(input("Qual o máximo que o resistor deve medir? "))
     verificar()
 
 
@@ -191,7 +191,7 @@ def verificar():
     numero = str(faixa[0]) + str(faixa[1])
 
     if (faixa[2] < 8):
-        valor_multiplicador = (valor_multiplicador ** faixa[2])
+        valor_multiplicador = (10 ** faixa[2])
     else:
         if (faixa[2] == 10):
             valor_multiplicador = 0.1
@@ -201,6 +201,9 @@ def verificar():
 
     minimo_gab = gabarito - ((percentual/100) * gabarito)
     max_gab = gabarito + ((percentual / 100) * gabarito)
+
+    minimo_gab = round(minimo_gab, 2)
+    max_gab = round(max_gab, 2)
 
     cursor.execute('UPDATE registro SET TENTATIVAS = TENTATIVAS + 1')
     banco.commit()
@@ -230,7 +233,8 @@ def verificar():
         cursor.execute('UPDATE registro SET ERROS = ERROS + 1')
         banco.commit()
 
-    
+
+   
     mostrar_banco()
     
 
@@ -283,7 +287,7 @@ def mostrar_banco():
     simplificando = simplificando.replace(')', ' ')
     simplificando = simplificando.replace(',', ' ')
 
-    print('Número de erros nominais: {}'.format(simplificando))
+    print('Número de erros de tolerância: {}'.format(simplificando))
     menu()
 
 def menu():
