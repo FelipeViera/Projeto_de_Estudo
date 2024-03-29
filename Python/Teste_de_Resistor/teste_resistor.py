@@ -5,7 +5,7 @@ import sqlite3
 
 #conexão:
 
-banco = sqlite3.connect('banco_de_dados/resistor.db')
+banco = sqlite3.connect('Python/Teste_de_Resistor/banco_de_dados/resistor.db')
 cursor = banco.cursor()
 
 
