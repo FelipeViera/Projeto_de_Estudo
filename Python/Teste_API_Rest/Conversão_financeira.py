@@ -4,7 +4,11 @@ import json
 
 
 
-
+def menu():
+    try: solicitacao_api()
+    except:
+        print("Você digitou de maneira incorreta. Tente Novamente")
+        menu()
 
 
 def solicitacao_api():
@@ -21,7 +25,6 @@ def inicio(cotacao_dollar):
     print('(2) Quero converter dólar em real')
     resposta = input('Digite: ').strip()
     resposta = str(resposta)
-
     if (resposta == 1):
         real_to_dolar(cotacao_dollar)
     else:
@@ -45,5 +48,5 @@ def dolar_to_real(cotacao_dollar):
     valor_em_real = valor_em_real.replace('.', ',')
     print("A quantia que você tem em US$ equivale a R$ {}".format(valor_em_real))
 
-
+menu()
 solicitacao_api()

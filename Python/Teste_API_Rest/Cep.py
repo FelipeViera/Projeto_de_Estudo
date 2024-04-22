@@ -9,13 +9,18 @@ def menu():
     print("(1) Através do seu CEP achamos seu endereço")
     print("(2) Através do seu endereço achamos o seu cep")
     resposta = input("Digite: ").strip()
-    informacao_cep(resposta)
+
+    try:        
+        informacao_cep(resposta)
+
+    except:
+        print("Opa parece que você digitou alguma informação de maneira incorreta. Tente novamente")
+        menu()
+    
 
 def solicitação_api(cep, resposta):
 
     link = "http://viacep.com.br/ws/{}/json/".format(cep)
-
-    #link2 = "http://viacep.com.br/ws/RS/Alvorada/Rua Doutor João Inácio/json/"
 
     lugar = requests.get(link)
     lugar = lugar.json()
@@ -44,7 +49,6 @@ def informacao_cep(resposta):
         rua = input("Digite o nome da rua/avenida: ")
         cep = uf + "/" + cidade + "/" + rua
         
-    print(cep)
     solicitação_api(cep, resposta)
 
 

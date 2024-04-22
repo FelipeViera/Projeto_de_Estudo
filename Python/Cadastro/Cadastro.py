@@ -1,11 +1,7 @@
 import mysql.connector
 
 
-
-def logar():
-    escolha_03 = input('Continuar? S/N: ')
-    if (escolha_03.upper() == 'N'):
-        menu()
+def conectar_ao_banco():
 
     conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
     
@@ -13,6 +9,16 @@ def logar():
         db_info = conexao.get_server_info()
         #print('Conectado ao banco de dados', db_info)
         cursor = conexao.cursor()
+
+    try:
+        menu(conexao, cursor)
+    except:
+        print("Deu erro ao conectar o banco")
+
+def logar(conexao, cursor):
+    escolha_03 = input('Continuar? S/N: ')
+    if (escolha_03.upper() == 'N'):
+        menu(conexao, cursor)
 
     email = input('Digite seu e-mail: ')
     senha = input('Digite sua senha: ')
@@ -30,23 +36,17 @@ def logar():
               
         if (verificando == senha):
             print('Você logou')
-            exibir(email)
+            exibir(email, conexao, cursor)
         else:
             print('Sua senha está incorreta')
-            logar()
+            logar(conexao, cursor)
             
     except:
         print('Não cadastrado')
-        logar()
+        logar(conexao, cursor)
    
 
-def mudar_cadastro(email):
-    conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
-    
-    if conexao.is_connected():
-        db_info = conexao.get_server_info()
-        #print('Conectado ao banco de dados', db_info)
-        cursor = conexao.cursor()
+def mudar_cadastro(email, conexao, cursor):
 
     print('Digite')
     print('( 1 ) para mudar o nome')
@@ -81,56 +81,43 @@ def mudar_cadastro(email):
         else:
             mudar_cadastro(email)
     else:
-        mudar_cadastro(email)
+        mudar_cadastro(email, conexao, cursor)
     
-    menu()
+    menu(conexao, cursor)
 
 
-def exibir(email):
-    conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
+def exibir(email, conexao, cursor):
     
-    if conexao.is_connected():
-        db_info = conexao.get_server_info()
-        #print('Conectado ao banco de dados', db_info)
-        cursor = conexao.cursor()
     
     cursor.execute('SELECT nome, email, cpf FROM pessoas where email = %s', (email,))
     print('Estes são seus dados de Nome, E-mail e CPF respectivamente')
     print(cursor.fetchone())
     resposta = input('Deseja modificar algum dado? S/N: ')
     if (resposta.upper() == 'S'):
-        mudar_cadastro(email)
+        mudar_cadastro(email, conexao, cursor)
     else:
-        menu()
+        menu(conexao, cursor)
 
 
-def menu():
+def menu(conexao, cursor):
     print('Digite')
     print('( 1 ) Cadastrar')
     print('( 2 ) Logar')
     print('( 3 ) Saír')
     escolha = input('Qual? ')
     if (escolha == '1'):
-        cadastrar()
+        cadastrar(conexao, cursor)
     elif (escolha == '2'):
-        logar()
+        logar(conexao, cursor)
     else:
+        cursor.close()
         print('Encerrado')
 
-def cadastrar():
+def cadastrar(conexao, cursor):
 
     escolha_02 = input('Continuar? S/N: ')
     if (escolha_02.upper() == 'N'):
-        menu()
-
-    conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
-    
-    if conexao.is_connected():
-        db_info = conexao.get_server_info()
-        #print('Conectado ao banco de dados', db_info)
-        cursor = conexao.cursor()
-
-    
+        menu(conexao, cursor)
     
     try:
         email = input('digite seu e-mail: ')
@@ -138,7 +125,7 @@ def cadastrar():
         resultado = cursor.fetchone()
         if (resultado):
             print('Este e-mail já está cadastrado')
-            cadastrar()
+            cadastrar(conexao, cursor)
         else:
              print('Não cadastrado')
              nome = str(input('Digite seu nome: '))
@@ -146,7 +133,7 @@ def cadastrar():
              cpf = str(input('Digite seu cpf: '))
              cursor.execute('INSERT INTO pessoas(nome, email, cpf, senha) VALUES (%s, %s, %s, %s)', (nome, email, cpf, senha))
              conexao.commit()
-             menu()
+             menu(conexao, cursor)
 
 
     except Exception as er:
@@ -156,6 +143,7 @@ def cadastrar():
         cpf = str(input('Digite seu cpf: '))
         cursor.execute('INSERT INTO pessoas(nome, email, cpf, senha) VALUES (%s, %s, %s, %s)', (nome, email, cpf, senha))
         conexao.commit()
-        menu()
+        menu(conexao, cursor)
 
-menu()
+
+conectar_ao_banco()

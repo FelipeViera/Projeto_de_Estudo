@@ -1,191 +1,118 @@
 import random
-import sqlite3
+import mysql.connector
 
 
 
 #conexão:
 
-banco = sqlite3.connect('Python/Teste_de_Resistor/banco_de_dados/resistor.db')
-cursor = banco.cursor()
 
-
-
-#Código: 
-
-faixa = [1, 2, 3, 4]
-
-resposta = 0
-valor_multiplicador = 10
-
-percentual = 0
-
-resposta_min = 0
-resposta_max = 0
-
-cor = ["amarelo", "verde", "azul", "marrom"]
-
+conexao = mysql.connector.connect(host='localhost', database='teste_resistor', user='root', password='')
+    
+if conexao.is_connected():
+    cursor = conexao.cursor()
 
 
 def faixa_01():
-    global faixa
-    faixa[0] = random.randint(0, 9)
 
-    faixa_02()
+    try:
+        faixa = [1, 2, 3, 4]
+        faixa[0] = random.randint(0, 9)
+        faixa_02(faixa)
+    except:
+        print("houve um erro")
+        print("Tente digitar corretamente os valores")
+        cursor.close()
 
-def faixa_02():
-    global faixa
+
+def faixa_02(faixa):
     faixa[1] = random.randint(0, 9)
+    multiplicador(faixa)
 
-    multiplicador()
-
-def multiplicador():
-    global faixa
+def multiplicador(faixa):
     faixa[2] = random.randint(0, 7)
     if (faixa[2] == 8 or faixa[2] == 9 ):
-        multiplicador()
+        multiplicador(faixa)
     else:
+        tolerancia(faixa)
 
-        tolerancia()
-
-def tolerancia():
-    global faixa
+def tolerancia(faixa):
     faixa[3] = random.randint(1, 11)
 
     if (faixa[3] == 3 or faixa[3] == 4):
-        tolerancia()
+        tolerancia(faixa)
     else:
         if (faixa[3]== 9):
-            tolerancia()
+            tolerancia(faixa)
         else:
-            conversao()
+            conversao(faixa)
 
-def conversao():
-    global faixa
-    global cor
-    global valor_multiplicador
-    global percentual
+def conversao(faixa):
 
-    if faixa[0] == 0:
-        cor[0] = "preto"
-    elif faixa[0] == 1:
-        cor[0] = "marrom"
-    elif faixa[0] == 2:
-        cor[0] = "vermelho"
-    elif faixa[0] == 3:
-        cor[0] = "laranja"
-    elif faixa[0] == 4:
-        cor[0] = "amarela"
-    elif faixa[0] == 5:
-        cor[0] = "verde"
-    elif faixa[0] == 6:
-        cor[0] = "azul"
-    elif faixa[0] == 7:
-        cor[0] = "violeta"
-    elif faixa[0] == 8:
-        cor[0] = "cinza"
-    else:
-        cor[0] = "branco"
+    cor = ["amarelo", "verde", "azul", "marrom"]
+
+    cursor.execute("SELECT COR FROM CODIGO_CORES WHERE ID = %s",(faixa[0],))
+    simplificando = str(cursor.fetchone())
+    simplificando = simplificando.replace('(', '')
+    simplificando = simplificando.replace(')', '')
+    simplificando = simplificando.replace(',', '')
+    simplificando = simplificando.replace("'", '')
+
+    cor[0] = simplificando
 
 
-    if faixa[1] == 0:
-        cor[1] = "preto"
-    elif faixa[1] == 1:
-        cor[1] = "marrom"
-    elif faixa[1] == 2:
-        cor[1] = "vermelho"
-    elif faixa[1] == 3:
-        cor[1] = "laranja"
-    elif faixa[1] == 4:
-        cor[1] = "amarela"
-    elif faixa[1] == 5:
-        cor[1] = "verde"
-    elif faixa[1] == 6:
-        cor[1] = "azul"
-    elif faixa[1] == 7:
-        cor[1] = "violeta"
-    elif faixa[1] == 8:
-        cor[1] = "cinza"
-    else:
-        cor[1] = "branco"
+    cursor.execute("SELECT COR FROM CODIGO_CORES WHERE ID = %s",(faixa[1],))
+    simplificando = str(cursor.fetchone())
+    simplificando = simplificando.replace('(', '')
+    simplificando = simplificando.replace(')', '')
+    simplificando = simplificando.replace(',', '')
+    simplificando = simplificando.replace("'", '')
+    cor[1] = simplificando
 
 
-    if faixa[2] == 0:
-        cor[2] = "preto"
-    elif faixa[2] == 1:
-        cor[2] = "marrom"
-    elif faixa[2] == 2:
-        cor[2] = "vermelho"
-    elif faixa[2] == 3:
-        cor[2] = "laranja"
-    elif faixa[2] == 4:
-        cor[2] = "amarela"
-    elif faixa[2] == 5:
-        cor[2] = "verde"
-    elif faixa[2] == 6:
-        cor[2] = "azul"
-    elif faixa[2] == 7:
-        cor[2] = "violeta"
-    elif faixa[2] == 10:
-        cor[2] = "dourado"
-
-    else:
-        cor[0] = "prateado"
+    cursor.execute("SELECT COR FROM CODIGO_CORES WHERE ID = %s",(faixa[2],))
+    simplificando = str(cursor.fetchone())
+    simplificando = simplificando.replace('(', '')
+    simplificando = simplificando.replace(')', '')
+    simplificando = simplificando.replace(',', '')
+    simplificando = simplificando.replace("'", '')
+    cor[2] = simplificando
 
 
-
-    if faixa[3]== 1:
-        cor[3] = "marrom"
-        percentual = 1
-    elif faixa[3]== 2:
-        cor[3] = "vermelho"
-        percentual = 2
-    elif faixa[3]== 5:
-        cor[3] = "verde"
-        percentual = 0.5
-    elif faixa[3]== 6:
-        cor[3] = "azul"
-        percentual = 0.25
-    elif faixa[3]== 7:
-        cor[3] = "violeta"
-        percentual = 0.1
-    elif faixa[3]== 8:
-        cor[3] = "cinza"
-        percentual = 0.05
-    elif faixa[3]== 10:
-        cor[3] = "dourado"
-        percentual = 5
-    else:
-        cor[3] = "prateado"
-        percentual = 10
-
-    responda()
+    cursor.execute("SELECT COR FROM CODIGO_CORES WHERE ID = %s",(faixa[3],))
+    simplificando = str(cursor.fetchone())
+    simplificando = simplificando.replace('(', '')
+    simplificando = simplificando.replace(')', '')
+    simplificando = simplificando.replace(',', '')
+    simplificando = simplificando.replace("'", '')
+    cor[3] = simplificando
 
 
-def responda():
-    global cor
-    global faixa
-    global resposta
-    global resposta_min
-    global resposta_max
+    responda(faixa, cor)
+
+
+def responda(faixa, cor):
+
+   
     print(' ')
     print("Quanto vale a resistência em ohms das seguintes faixas: ")
-    resposta = int(input('cores na ordem: {}, {}, {} e {}  '.format(cor[0], cor[1], cor[2], cor[3])))
+    resposta = input('cores na ordem: {}, {}, {} e {}: '.format(cor[0], cor[1], cor[2], cor[3])).strip()
+    resposta = int(resposta)
+    resposta_min = input("Qual o minimo que o resistor deve medir? ").strip()
+    resposta_max = input("Qual o máximo que o resistor deve medir? ").strip()
+    resposta_max = float(resposta_max)
+    resposta_min = float(resposta_min)
 
-    resposta_min = float(input("Qual o minimo que o resistor deve medir? "))
-    resposta_max = float(input("Qual o máximo que o resistor deve medir? "))
-    verificar()
+    verificar(faixa, resposta, resposta_max, resposta_min)
+
+def verificar(faixa, resposta, resposta_max, resposta_min):
 
 
-
-def verificar():
-    global valor_multiplicador
-    global resposta
-    global faixa
-    global cor
-    global percentual
-    global resposta_min
-    global resposta_max
-
+    cursor.execute("SELECT TOLERANCIA FROM CODIGO_CORES WHERE ID = %s",(faixa[2],))
+    simplificando = str(cursor.fetchone())
+    simplificando = simplificando.replace('(', ' ')
+    simplificando = simplificando.replace(')', ' ')
+    simplificando = simplificando.replace(',', ' ')
+    percentual = float(simplificando)
 
 
     numero = str(faixa[0]) + str(faixa[1])
@@ -206,39 +133,35 @@ def verificar():
     max_gab = round(max_gab, 2)
 
     cursor.execute('UPDATE registro SET TENTATIVAS = TENTATIVAS + 1')
-    banco.commit()
+    conexao.commit()
 
     if (resposta == gabarito):
         print("você acertou o valor nominal")
 
         cursor.execute('UPDATE registro SET ACERTOS_NOMINAIS = ACERTOS_NOMINAIS + 1')
-        banco.commit()
+        conexao.commit()
 
 
         if (minimo_gab == resposta_min and max_gab == resposta_max):
             print("você acertou tudo!")
 
             cursor.execute('UPDATE registro SET ACERTOS = ACERTOS + 1')
-            banco.commit()
+            conexao.commit()
             
         else:
             print("Porém, precisa revisar seus estudos com a tolerância")
             cursor.execute('UPDATE registro SET ERROS_DE_TOLERÂNCIA = ERROS_DE_TOLERÂNCIA + 1')
-            banco.commit()
+            conexao.commit()
 
 
 
     else:
         print("errou")
         cursor.execute('UPDATE registro SET ERROS = ERROS + 1')
-        banco.commit()
-
+        conexao.commit()
 
    
     mostrar_banco()
-    
-
-
     
 
 def mostrar_banco():
@@ -298,7 +221,7 @@ def menu():
         faixa_01()
     else:
         print('fim')
-
+        cursor.close()
 
 
 faixa_01()
