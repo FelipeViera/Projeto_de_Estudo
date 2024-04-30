@@ -49,4 +49,3 @@ def dolar_to_real(cotacao_dollar):
     print("A quantia que você tem em US$ equivale a R$ {}".format(valor_em_real))
 
 menu()
-solicitacao_api()

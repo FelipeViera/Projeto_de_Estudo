@@ -1,5 +1,4 @@
 #Este projeto consumirá uma API púlica de CEP
-
 import requests
 import json
 
