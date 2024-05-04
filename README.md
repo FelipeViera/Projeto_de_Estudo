@@ -1,4 +1,4 @@
-<h1> Portifolio </h1>
+<h1> Projeto de Estudo </h1>
 
 Este repositório é destinado aos projetos que crio ao longos dos meus estudos com fins 
 totalmente didáticos.
