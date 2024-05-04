@@ -41,9 +41,6 @@
     MySQL
   </li>
 
-  <li>
-    Visual Studio Code
-  </li>
 
   <li>
     XAMPP
