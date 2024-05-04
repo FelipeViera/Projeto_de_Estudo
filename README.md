@@ -1,6 +1,7 @@
 <h1> Portifolio </h1>
 
-Este repositório é destinado aos meus melhores projetos que contemplam a utilização e a integração de diferentes tecnologias.
+Este repositório é destinado aos projetos que crio ao longos dos meus estudos com fins 
+totalmente didáticos.
 
 <ul>
   <li> Python </li>
