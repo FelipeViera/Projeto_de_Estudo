@@ -58,9 +58,6 @@
   <Li>
     Consumo de API RESTful
   </Li>
-  <li> 
-    Visual Studio Code
-  </li>
 </ul>
 
 <h2>

@@ -36,7 +36,6 @@
 <ul>
   <li> Python </li>
   <li> API RESTful</li>
-  <li> Visual Studio Code</li>
 </ul>
 
 <h2> Autores </h2>
