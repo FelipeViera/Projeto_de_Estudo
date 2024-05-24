@@ -1,0 +1,17 @@
+Colocar três tipos de funções:
+
+para os botões de números: Adicionar + um número concatenando
+
+para os botões de operação: Encerra a primeira concatenação e inicia uma nova 
+
+para o botão de = : Calcula o resultado final
+
+
+OBS: 
+Coloca todas as concatenações em uma lista para elas poderem ser ilimitadas.
+Depois usa um laço de repetição para colocar todas elas em um cálculo. 
+Faça com que operações estejam entre as sequências. Use um if.
+
+if (operacion[0] == '*'){
+   resposta = sequencia[0] * sequencia[1]
+}
