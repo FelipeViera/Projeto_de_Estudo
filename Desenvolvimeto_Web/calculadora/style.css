@@ -7,11 +7,12 @@ main {
 
 .calculadora{
     width: 40vw;
-    height: 50vh;
+    min-height: 50vh;
     background-color: rgb(166, 166, 240);
     display: grid;
     place-items: center;
     padding: 2vw;
+    border-radius: 10px;
     
     
 }
@@ -20,16 +21,28 @@ main {
     margin-top: 0;
     background-color: rgb(217, 217, 247);
     width: 30vw;
+    min-height: 1vw;
     margin-bottom: 1vh;
     text-align: right;
     font-size: 15pt;
     padding: 1vw;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    border-radius: 5px;
     
 }
 
+.botoes {
+    margin-top: 1vw;
+    margin-left: 4vw;
+}
+
 button {
-    height: 10vh;
-    width: 10vh;
+    width: 5vw;
+    font-size: 15pt;
+    margin-right: 1.5vw;
+    margin-bottom: 0.5vw;
+    background-color:  rgb(197, 197, 237);
+    border-color:  rgb(217, 217, 247);
+    border-radius: 5px;
 }
