@@ -2,6 +2,13 @@ var player = 0
 var listap1 = []
 var listap2 = []
 
+
+function Reiniciar(){
+    location.reload()
+}
+
+
+
 function Clique(valor){
     var entrada = document.getElementById(valor)
 

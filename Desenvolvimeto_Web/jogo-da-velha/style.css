@@ -20,3 +20,14 @@ button {
     font-size: 18pt;
     margin-right: 0.5vw;
 }
+
+#btn-reiniciar{
+    height: 45px;
+    width: 45px;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+img{
+    height: 25px;
+}
