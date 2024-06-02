@@ -1,11 +1,17 @@
 body{
     display: grid;      
     place-items: center;
-  
+    padding:0px;
+    margin: 0px;
 }
 
 header {
-    margin-bottom: 20vh;
+    display: grid;      
+    place-items: center;
+    margin-bottom: 10vh;
+    height: 20vh;
+    background-color:blueviolet;
+    width: 100%;
 }
 
 .linha {
@@ -14,11 +20,13 @@ header {
     place-items: center;
 }
 
+
 button {
     height: 20vh;
     width: 20vh;
     font-size: 18pt;
     margin-right: 0.5vw;
+    background-color: white;
 }
 
 #btn-reiniciar{
@@ -26,6 +34,7 @@ button {
     width: 45px;
     border-radius: 20px;
     padding: 5px;
+    
 }
 
 img{

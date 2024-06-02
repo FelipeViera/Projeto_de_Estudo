@@ -1,6 +1,5 @@
 -Desenvolver melhor o CSS e estilizar o site.
 -Colocar um título no header com o nome do jogo
--Funcionalidade de reiniciar 
 -Funcionalidade de escolher se é 'x' ou 'o'
 -Possibilidade de adicionar nome aos jogadores
 -Criar um bot para jogar contra o player com níveis fácil - médio - Impossível 

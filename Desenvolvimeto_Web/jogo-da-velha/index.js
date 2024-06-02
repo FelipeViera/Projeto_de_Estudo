@@ -49,7 +49,7 @@ function verificar(jogador){
 
             for (i = 0; i < lista.length; i++){
                 var entrada = document.getElementById(lista[i])
-                entrada.style.backgroundColor = "green"
+                entrada.style.backgroundColor = "rgb(41, 229, 41);"
             }
         
             
@@ -65,7 +65,7 @@ function verificar(jogador){
 
             for (i = 0; i < lista.length; i++){
                 var entrada = document.getElementById(lista[i])
-                entrada.style.backgroundColor = "green"
+                entrada.style.backgroundColor = "rgb(41, 229, 41)"
             }
 
         }
@@ -79,7 +79,7 @@ function verificar(jogador){
 
             for (i = 0; i < lista.length; i++){
                 var entrada = document.getElementById(lista[i])
-                entrada.style.backgroundColor = "green"
+                entrada.style.backgroundColor = "rgb(41, 229, 41)"
             }
         }
 
@@ -92,7 +92,7 @@ function verificar(jogador){
 
             for (i = 0; i < lista.length; i++){
                 var entrada = document.getElementById(lista[i])
-                entrada.style.backgroundColor = "green"
+                entrada.style.backgroundColor = "rgb(41, 229, 41)"
             }
 
             player = 3
@@ -103,7 +103,7 @@ function verificar(jogador){
 
             for (i = 0; i < lista.length; i++){
                 var entrada = document.getElementById(lista[i])
-                entrada.style.backgroundColor = "green"
+                entrada.style.backgroundColor = "rgb(41, 229, 41)"
             }
             player = 3
         }
@@ -113,7 +113,7 @@ function verificar(jogador){
 
             for (i = 0; i < lista.length; i++){
                 var entrada = document.getElementById(lista[i])
-                entrada.style.backgroundColor = "green"
+                entrada.style.backgroundColor = "rgb(41, 229, 41)"
             }
             player = 3
         }
@@ -125,7 +125,7 @@ function verificar(jogador){
 
             for (i = 0; i < lista.length; i++){
                 var entrada = document.getElementById(lista[i])
-                entrada.style.backgroundColor = "green"
+                entrada.style.backgroundColor = "rgb(41, 229, 41)"
             }
             player = 3
         }
@@ -135,7 +135,7 @@ function verificar(jogador){
 
             for (i = 0; i < lista.length; i++){
                 var entrada = document.getElementById(lista[i])
-                entrada.style.backgroundColor = "green"
+                entrada.style.backgroundColor = "rgb(41, 229, 41)"
             }
             player = 4
         }
