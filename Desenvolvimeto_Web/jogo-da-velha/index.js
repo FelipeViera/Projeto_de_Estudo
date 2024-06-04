@@ -7,7 +7,27 @@ function Reiniciar(){
     location.reload()
 }
 
+function Escolha(id){
+    var x = document.getElementById('x')
+    var o = document.getElementById('o')
 
+
+
+    if (listap1.length == 0 && listap2.length == 0){
+        //alert('sim')
+        if ( id == "x"){
+            player = 0
+            x.style.backgroundColor = "rgb(166, 96, 232)"
+            o.style.backgroundColor = "white"
+            
+        }
+        else {
+            player = 1
+            o.style.backgroundColor = "rgb(166, 96, 232)"
+            x.style.backgroundColor = "white"
+        }
+    }
+}
 
 function Clique(valor){
     var entrada = document.getElementById(valor)
@@ -49,7 +69,7 @@ function verificar(jogador){
 
             for (i = 0; i < lista.length; i++){
                 var entrada = document.getElementById(lista[i])
-                entrada.style.backgroundColor = "rgb(41, 229, 41);"
+                entrada.style.backgroundColor = "rgb(41, 229, 41)"
             }
         
             
