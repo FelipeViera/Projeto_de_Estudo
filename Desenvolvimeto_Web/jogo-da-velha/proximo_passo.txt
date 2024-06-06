@@ -1,3 +1,8 @@
 -Encontrar uma fonte 
+-Quando reiniciar ele continua contando as vitórias para cada simbolo
+--> Limpar o jogo da velha para próxima partida
+
+
+
 -Possibilidade de adicionar nome aos jogadores
 -Criar um bot para jogar contra o player com níveis fácil - médio - Impossível 
